@@ -1,0 +1,19 @@
+{
+  "name": "card-details",
+  "version": "1.0.0",
+  "description": "Gives details of credit/debit card",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "author": "Prince Devadoss",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-status-monitor": "^1.1.4",
+    "log": "^1.4.0",
+    "spdy": "^3.4.7"
+  }
+}
