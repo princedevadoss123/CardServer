@@ -30,9 +30,9 @@ ServerWare.prototype.init = function() {
         });
 
         //Sample route
-        app.get('/hello', function(request,response){ 
+        app.get('/', function(request,response){ 
             response.send('docs');
         });
 
-        new Server(3001, app).createServer();
+        new Server(3002, app).createServer();
 }
