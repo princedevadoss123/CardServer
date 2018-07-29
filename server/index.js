@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const Server = require('./server-module/server');
+var dbWrapper = require('./mongo-db/index');
 const app = express();
 let Log = require('log');
 let logger = new Log();
@@ -19,6 +20,9 @@ ServerWare.prototype.init = function() {
 
         // Angular DIST output folder
         app.use(express.static('./dist'));
+        
+        //DB Connnection Initialization
+        dbWrapper.init();
 
         //Details of request
         app.use(function(req, res, next) {
