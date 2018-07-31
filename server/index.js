@@ -5,6 +5,7 @@ var dbWrapper = require('./mongo-db/index');
 const app = express();
 let Log = require('log');
 let logger = new Log();
+const executor = require('../bin/insertValue');
 
 function ServerWare() { }
 
@@ -22,7 +23,15 @@ ServerWare.prototype.init = function() {
         app.use(express.static('./dist'));
         
         //DB Connnection Initialization
-        dbWrapper.init();
+        new Promise(function(resolve, reject){
+            dbWrapper.init(resolve, reject);
+        })
+        .then(function(cards) {
+            if(!(cards.length > 0)) { 
+                //Init Script
+                executor();
+            }
+        });
 
         //Details of request
         app.use(function(req, res, next) {
@@ -34,8 +43,10 @@ ServerWare.prototype.init = function() {
         });
 
         //Sample route
-        app.get('/', function(request,response){ 
-            response.send('docs');
+        app.get('/', function(request,response){
+            dbWrapper.getCardModel('card-details').findOne({cardnumber: '100109087654'}, function(err, result) {
+                response.send(result);
+            }) ;
         });
 
         new Server(3002, app).createServer();
