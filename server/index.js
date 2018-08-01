@@ -5,6 +5,7 @@ var dbWrapper = require('./mongo-db/index');
 const app = express();
 let Log = require('log');
 let logger = new Log();
+var cardProcess = require('./cardProcess/api');
 const executor = require('../bin/insertValue');
 
 function ServerWare() { }
@@ -42,12 +43,7 @@ ServerWare.prototype.init = function() {
             next();
         });
 
-        //Sample route
-        app.get('/', function(request,response){
-            dbWrapper.getCardModel('card-details').findOne({cardnumber: '100109087654'}, function(err, result) {
-                response.send(result);
-            }) ;
-        });
+        app.use('/app', cardProcess);
 
         new Server(3002, app).createServer();
 }

@@ -1,0 +1,29 @@
+[
+    {
+        "cardnumber": "100109087654",
+        "cvv": "321",
+        "mobile": "8970926496",
+        "email": "d.prince1995@gmail.com",
+        "OTP": {
+            "pin": "" 
+        }
+    },
+    {
+        "cardnumber": "100109087343",
+        "cvv": "176",
+        "mobile": "9870926496",
+        "email": "prince1995@gmail.com",
+        "OTP": {
+            "pin": "" 
+        }
+    },
+    {
+        "cardnumber": "100109087546",
+        "cvv": "544",
+        "mobile": "9809826491",
+        "email": "vkdevadoss@gmail.com",
+        "OTP": {
+            "pin": "" 
+        }
+    }
+]

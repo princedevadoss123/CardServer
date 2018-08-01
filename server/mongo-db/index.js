@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 var Connection = require('./connect');
 var CardSchema = require('./schema');
 var CardModel = require('./model');
-var connection;
 var mongooseWrapper = {
     init: function(resolve, reject) {
         connection = new Connection(mongoose).init(resolve, reject);

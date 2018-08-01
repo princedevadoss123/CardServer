@@ -12,7 +12,7 @@ Connection.prototype.init = function(resolve, reject) {
         throw error;
     });
     this.mongoose.connection.on('disconnected', () => {
-        logger.info('MongoDB Disconnected');
+        logger.error('MongoDB Disconnected');
         setTimeout(_connect, 5000);
     });
 }
@@ -27,12 +27,13 @@ function _connect(mongoose, resolve, reject) {
     
     mongoose.connect('mongodb://localhost:27017/Card', options, function(error) {
         if(error) {
+            logger.error('Error in Connecting to MongoDB');
             throw error;
         }
         else {
             mongoose.connection.db.listCollections().toArray(function (err, collectionNames) {
                 if (err) {
-                  console.log(err);
+                  logger.error('Error in retriving collections');
                   return;
                 }
                   resolve(collectionNames);

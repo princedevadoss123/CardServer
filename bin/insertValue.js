@@ -1,21 +1,19 @@
-var model = require('../server/mongo-db/index');
+let model = require('../server/mongo-db/index');
+let Log = require('log');
+let logger = new Log();
+var fs = require('fs');
 
 function initScript() {
+    var contentInfo = JSON.parse(fs.readFileSync('bin/consumption/cardDetails.json', 'utf8'));
     var cardModel = model.getCardModel('card-details');
-    cardModel.insertMany([{
-        cardnumber: '100109087654',
-        cvv: '321',
-        mobile: '8970926496',
-        email: 'd.prince1995@gmail.com',
-        OTP: {
-            pin: '' 
-        },
-    }], function(err, data) {
+    logger.info(contentInfo);
+    cardModel.insertMany(contentInfo, function(err, data) {
         if(err) {
+            logger.error('Initial Insertion failed');
             throw err;
         }
         else {
-            console.log('Successfully updated');
+            logger.info('Successfully updated');
         }
     });
 }
