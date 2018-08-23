@@ -17,6 +17,10 @@ MongoModel.prototype.getCardModel= function() {
     {
         timestamps: true
     });
-
-    return this.mongoose.model('card-detail', cardSchema);
+    try {
+        return this.mongoose.model('card-detail');
+    }
+    catch(e) {
+        return this.mongoose.model('card-detail', cardSchema);
+    }
 }
