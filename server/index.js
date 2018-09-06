@@ -7,6 +7,7 @@ let Log = require('log');
 let logger = new Log();
 var cardProcess = require('./cardProcess/api');
 const executor = require('../bin/insertValue');
+const bearerToken = require('express-bearer-token');
 
 function ServerWare() { }
 
@@ -16,6 +17,9 @@ ServerWare.prototype.init = function() {
         // Parsers
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({ extended: true}));
+
+        //Handling Bearer Token
+        app.use(bearerToken());
 
         //Status monitor
         app.use(require('express-status-monitor')());
